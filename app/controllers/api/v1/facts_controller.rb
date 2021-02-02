@@ -11,7 +11,7 @@ class Api::V1::FactsController < ApplicationController
   # GET /users/:user_id/facts/:id
   def show
     # your code goes here
-     @fact = Fact.find(params [:id])
+     @fact = Fact.find(params[:id])
   end
 
   # POST /users/:user_id/facts
