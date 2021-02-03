@@ -12,6 +12,7 @@ class Api::V1::FactsController < ApplicationController
   def show
     # your code goes here
      @fact = Fact.find(params [:id])
+     render json: @fact
   end
 
   # POST /users/:user_id/facts
@@ -31,11 +32,11 @@ class Api::V1::FactsController < ApplicationController
   def update
     # your code goes here
     if @fact.update(fact_params)
-      flash.notice = "The fact record was updated successfully."
-      redirect_to @fact
+      redirect json: @fact
     else
-      flash.now.alert = @fact.errors.full_messages.to_sentence
-      render :edit
+      render json: { error:
+        "Unable to create fact: #{@fact.error.full_messages.to_sentence}"},
+        status: 400
     end
   end
 
