@@ -10,7 +10,7 @@ class Api::V1::UsersController < ApplicationController
   # GET /users/:id
   def show
     # your code goes here
-    @user = User.find(params [:id])
+    @user = User.find(params[:id])
     render json: @user
   end
 
@@ -49,7 +49,7 @@ class Api::V1::UsersController < ApplicationController
   private
 
   def user_params
-    params.permit(:username, :password)
+    params.require(:user).permit(:username, :password)
   end
 
   def set_user

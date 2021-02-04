@@ -11,7 +11,7 @@ class Api::V1::FactsController < ApplicationController
   # GET /users/:user_id/facts/:id
   def show
     # your code goes here
-     @fact = Fact.find(params [:id])
+     @fact = Fact.find(params[:id])
      render json: @fact
   end
 
@@ -32,7 +32,7 @@ class Api::V1::FactsController < ApplicationController
   def update
     # your code goes here
     if @fact.update(fact_params)
-      redirect json: @fact
+      render json: @fact
     else
       render json: { error:
         "Unable to create fact: #{@fact.error.full_messages.to_sentence}"},
