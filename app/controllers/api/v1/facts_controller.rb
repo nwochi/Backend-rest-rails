@@ -11,7 +11,9 @@ class Api::V1::FactsController < ApplicationController
   # GET /users/:user_id/facts/:id
   def show
     # your code goes here
-     @fact = Fact.find(params [:id])
+    # @fact = Fact.find(params [:id])
+    @fact = Fact.find(params [:id])
+    render json: @fact
   end
 
   # POST /users/:user_id/facts
@@ -30,12 +32,19 @@ class Api::V1::FactsController < ApplicationController
   # PUT /users/:user_id/facts/:id
   def update
     # your code goes here
+    # if @fact.update(fact_params)
+    #   flash.notice = "The fact record was updated successfully."
+    #   redirect_to @fact
+    # else
+    #   flash.now.alert = @fact.errors.full_messages.to_sentence
+    #   render :edit
+    # end
     if @fact.update(fact_params)
-      flash.notice = "The fact record was updated successfully."
-      redirect_to @fact
+      render json: @fact
     else
-      flash.now.alert = @fact.errors.full_messages.to_sentence
-      render :edit
+      render json: { error:
+        "Unable to create user: #{@fact.errors.full_messages.to_sentence}"},
+        status: 400
     end
   end
 

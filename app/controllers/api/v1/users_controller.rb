@@ -10,7 +10,9 @@ class Api::V1::UsersController < ApplicationController
   # GET /users/:id
   def show
     # your code goes here
+    # @user = User.find(params [:id])
     @user = User.find(params [:id])
+    render json: @user
   end
 
   # POST /users
@@ -30,11 +32,11 @@ class Api::V1::UsersController < ApplicationController
     # your code godes here
     #@user = User.find(params[:id])
     if @user.update(user_params)
-      flash.notice = "The user record was updated successfully."
-      redirect_to @user
+      render json: @user
     else
-      flash.now.alert = @user.errors.full_messages.to_sentence
-      render :edit
+      render json: { error:
+        "Unable to create user: #{@user.errors.full_messages.to_sentence}"},
+        status: 400
     end
     
   end
