@@ -11,9 +11,8 @@ class Api::V1::FactsController < ApplicationController
   # GET /users/:user_id/facts/:id
   def show
     # your code goes here
-    # @fact = Fact.find(params [:id])
-    @fact = Fact.find(params [:id])
-    render json: @fact
+     @fact = Fact.find(params[:id])
+     render json: @fact
   end
 
   # POST /users/:user_id/facts
@@ -43,7 +42,11 @@ class Api::V1::FactsController < ApplicationController
       render json: @fact
     else
       render json: { error:
+<<<<<<< HEAD
         "Unable to create user: #{@fact.errors.full_messages.to_sentence}"},
+=======
+        "Unable to create fact: #{@fact.error.full_messages.to_sentence}"},
+>>>>>>> rest
         status: 400
     end
   end
