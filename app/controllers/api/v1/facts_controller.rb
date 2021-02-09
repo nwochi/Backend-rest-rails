@@ -42,11 +42,7 @@ class Api::V1::FactsController < ApplicationController
       render json: @fact
     else
       render json: { error:
-<<<<<<< HEAD
-        "Unable to create user: #{@fact.errors.full_messages.to_sentence}"},
-=======
         "Unable to create fact: #{@fact.error.full_messages.to_sentence}"},
->>>>>>> rest
         status: 400
     end
   end
